@@ -6,10 +6,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public GameObject gameOverPanel;
-    public TMP_Text finalScoreText; 
+    public TMP_Text finalScoreText;
     public ScoreManager scoreManager;
 
-    private string filePath; 
+    private string filePath;
 
     void Awake()
     {
@@ -21,7 +21,15 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        filePath = Path.Combine(Application.persistentDataPath, "player_score.json");
+
+        // Define a relative path (inside the project folder)
+        string folderName = "SaveFiles"; // Folder inside the project directory
+        string fileName = "player_score.json"; // File name
+
+        // Combine the folder and file name with the project directory
+        filePath = Path.Combine(Application.dataPath, folderName, fileName);
+
+        Debug.Log("File Path: " + filePath);
     }
 
     void Start()
